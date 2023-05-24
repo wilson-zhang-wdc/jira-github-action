@@ -5,7 +5,7 @@ on:
 
 jobs:
   update-jira:
-    if: ${{github.event.head_commit.message}} =~ ^(?i)STAR-[0-9]+(.|\n)*?$
+    if: ${{ contains(github.event.head_commit.message, '^STAR-[0-9]+(.|\n)*?$') }}
     runs-on: ubuntu-latest
     
     steps:
