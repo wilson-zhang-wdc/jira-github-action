@@ -5,7 +5,7 @@ on:
 
 jobs:
   update-jira:
-    if: ${{github.event.head_commit.message}} =~ STAR-[0-9]+
+    if: ${{github.event.head_commit.message}} =~ ^(?i)STAR-[0-9]+(.|\n)*?$
     runs-on: ubuntu-latest
     
     steps:
@@ -23,5 +23,7 @@ jobs:
         run: |
             if [[ "${{github.event.head_commit.message}}" =~ ^(?i)STAR-[0-9]+(.|\n)*?$ ]];
             then
-                echo "Commit message has jira key"
+                echo "Commit message ${{github.event.head_commit.message}} has jira key"
+            else
+                echo "Commit message ${{github.event.head_commit.message}} doesnt have jira key"
             fi
