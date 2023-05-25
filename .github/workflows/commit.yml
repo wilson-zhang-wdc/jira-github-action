@@ -36,7 +36,7 @@ jobs:
 
       - name: Run Jira script
         run: |
-            GITHUB_CONTEXT="${{ toJson(github) }}"
+            GITHUB_CONTEXT="${{ github }}"
             python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} "${{ toJson(github) }}"
 
     #   - name: Login to jira
