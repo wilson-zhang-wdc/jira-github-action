@@ -15,6 +15,7 @@ else:
 
 print(os.getenv("GITHUB_HEAD_REF"))
 print(os.getenv("GITHUB_REF"))
+print(os.getenv("GITHUB_CONTEXT"))
 sys.exit(1)
 commit_message = github_data["event"]["head_commit"]["message"]
 

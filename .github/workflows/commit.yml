@@ -35,6 +35,8 @@ jobs:
         run: pip install jira
 
       - name: Run Jira script
+        env:
+            GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
             GITHUB_CONTEXT="${{ github }}"
             python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} '${{ toJson(github) }}'
