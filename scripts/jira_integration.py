@@ -1,4 +1,4 @@
-from scripts.jira_integration import JIRA
+from jira import JIRA
 import sys
 import os
 import re
