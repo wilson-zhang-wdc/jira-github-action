@@ -15,6 +15,8 @@ else:
 
 # print(os.environ["GITHUB_CONTEXT"])
 # print(os.environ)
+print(commit_message)
+print(type(commit_message))
 print(json.loads(commit_message))
 sys.exit(1)
 
