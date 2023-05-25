@@ -17,6 +17,9 @@ jobs:
         run: |
             echo "$GITHUB_CONTEXT"
 
+      - name: Get python version
+        run: py -0p
+
       - name: Install Python
         uses: actions/setup-python@v2
         with:
