@@ -37,7 +37,7 @@ jobs:
       - name: Run Jira script
         run: |
             GITHUB_CONTEXT="${{ github }}"
-            python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} "${{ github }}"
+            python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} '${{ github }}'
 
     #   - name: Login to jira
     #     uses: atlassian/gajira-login@master
