@@ -18,7 +18,6 @@ jobs:
             GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
             echo "$GITHUB_CONTEXT"
-            echo "$github.event.commits.message"
     
       - name: Test regex
         run: |
@@ -29,10 +28,14 @@ jobs:
                 echo "Commit message '${{github.event.head_commit.message}}' doesnt have jira key"
             fi
 
-      - name: Login to jira
-        uses: atlassian/gajira-login@master
-        env:
-            JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-            JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-            JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+      - name: Run Jira script
+        run: |
+            python scripts/jira.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} ${{ github.event.head_commit.message }}
+
+    #   - name: Login to jira
+    #     uses: atlassian/gajira-login@master
+    #     env:
+    #         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+    #         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+    #         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
 
