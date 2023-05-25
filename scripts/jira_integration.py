@@ -43,4 +43,4 @@ if __name__ == '__main__':
     jira_key = re.search("STAR-[0-9]+", commit_message)
     print(jira_key)
 
-    update_jira_issue_status(username, password, jira_key, 'In Progress')
+    # update_jira_issue_status(username, password, jira_key, 'In Progress')
