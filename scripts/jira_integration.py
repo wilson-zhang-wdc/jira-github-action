@@ -8,17 +8,13 @@ import json
 if len(sys.argv) >= 4:
     username = sys.argv[1]
     password = sys.argv[2]    
-    commit_message = sys.argv[3]
+    github_data = sys.argv[3]
 else:
     print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
     sys.exit(1)
 
-# print(os.environ["GITHUB_CONTEXT"])
-# print(os.environ)
-print(commit_message)
-print(type(commit_message))
-print(json.loads(commit_message))
-sys.exit(1)
+commit_message = github_data.event.head_commit.message
+print(github_data)
 
 # Extract jira key from commit message
 jira_key = re.search("STAR-[0-9]+", commit_message).group()
