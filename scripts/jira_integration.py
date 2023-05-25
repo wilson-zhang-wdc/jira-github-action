@@ -32,17 +32,12 @@ def update_jira_issue_status(username, password, issue_key, status):
 # Example usage
 if __name__ == '__main__':
     # Retrieve username and password from command-line arguments or environment variables
-    if len(sys.argv) >= 3:
+    if len(sys.argv) >= 4:
         username = sys.argv[1]
-        password = sys.argv[2]
+        password = sys.argv[2]    
+        commit_message = sys.argv[3]
     else:
-        username = os.environ.get('JIRA_USERNAME')
-        password = os.environ.get('JIRA_PASSWORD')
-    
-    commit_message = sys.argv[3]
-
-    if not username or not password:
-        print('Please provide Jira username and password.')
+        print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
         sys.exit(1)
 
     jira_key = re.search("STAR-[0-9]+", commit_message)
