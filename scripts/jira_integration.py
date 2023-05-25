@@ -13,7 +13,8 @@ else:
     print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
     sys.exit(1)
 
-print(os.environ(["GITHUB_CONTEXT"]))
+print(os.environ["GITHUB_CONTEXT"])
+print(os.environ)
 print(json.loads(commit_message))
 sys.exit(1)
 
