@@ -35,4 +35,5 @@ jobs:
         #     else
         #         echo "Commit message '${{github.event.head_commit.message}}' doesnt have jira key"
         #     fi
+
         
