@@ -13,7 +13,9 @@ else:
     print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
     sys.exit(1)
 
-print(github_data)
+print(os.getenv("GITHUB_HEAD_REF"))
+print(os.getenv("GITHUB_REF"))
+sys.exit(1)
 commit_message = github_data["event"]["head_commit"]["message"]
 
 # Extract jira key from commit message
