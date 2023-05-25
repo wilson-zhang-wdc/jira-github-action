@@ -13,8 +13,8 @@ else:
     print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
     sys.exit(1)
 
-commit_message = github_data.event.head_commit.message
 print(github_data)
+commit_message = github_data.event.head_commit.message
 
 # Extract jira key from commit message
 jira_key = re.search("STAR-[0-9]+", commit_message).group()
