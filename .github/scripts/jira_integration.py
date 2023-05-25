@@ -5,7 +5,6 @@ import re
 import json
 import requests
 
-# Retrieve username and password from command-line arguments or environment variables
 if len(sys.argv) >= 4:
     username = sys.argv[1]
     password = sys.argv[2]    
@@ -23,12 +22,12 @@ print(jira_key)
 res = requests.get(f"https://cejira.sandisk.com/rest/api/2/issue/{jira_key}")
 print(res)
 
-# Jira server information
-JIRA_SERVER = 'https://cejira.sandisk.com'
+# # Jira server information
+# JIRA_SERVER = 'https://cejira.sandisk.com'
 
-# Connect to Jira
-jira = JIRA(server=JIRA_SERVER, basic_auth=(username, password))
+# # Connect to Jira
+# jira = JIRA(server=JIRA_SERVER, basic_auth=(username, password))
 
-# Get the issue
-issue = jira.issue(jira_key)
-print(issue)
+# # Get the issue
+# issue = jira.issue(jira_key)
+# print(issue)

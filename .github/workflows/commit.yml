@@ -5,28 +5,17 @@ on:
 
 jobs:
   update-jira:
-    # Regex doesnt seem to work in this if condition
-    # if: github.event.head_commit.message == '^STAR-[0-9]+(.|\n)*?'
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Echo event
+      - name: Echo github context
         env:
             GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
             echo "$GITHUB_CONTEXT"
-    
-      - name: Test regex
-        run: |
-            if [[ "${{github.event.head_commit.message}}" =~ ^STAR-[0-9]+(.|\n)*? ]];
-            then
-                echo "Commit message '${{github.event.head_commit.message}}' has jira key"
-            else
-                echo "Commit message '${{github.event.head_commit.message}}' doesnt have jira key"
-            fi
 
       - name: Install Python
         uses: actions/setup-python@v2
@@ -35,16 +24,14 @@ jobs:
         run: pip install jira
 
       - name: Run Jira script
-        env:
-            GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-            GITHUB_CONTEXT="${{ github }}"
-            python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} '${{ toJson(github) }}'
+            python .github/scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} '${{ toJson(github) }}'
 
-    #   - name: Login to jira
-    #     uses: atlassian/gajira-login@master
-    #     env:
-    #         JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-    #         JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-    #         JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
+        # - name: Test regex
+        # run: |
+        #     if [[ "${{github.event.head_commit.message}}" =~ ^STAR-[0-9]+(.|\n)*? ]];
+        #     then
+        #         echo "Commit message '${{github.event.head_commit.message}}' has jira key"
+        #     else
+        #         echo "Commit message '${{github.event.head_commit.message}}' doesnt have jira key"
+        #     fi
