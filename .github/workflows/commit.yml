@@ -5,7 +5,8 @@ on:
 
 jobs:
   update-jira:
-    if: ${{github.event.head_commit.message}} =~ '^STAR-[0-9]+(.|\n)*?'
+    # Regex doesnt seem to work in this if condition
+    # if: github.event.head_commit.message == '^STAR-[0-9]+(.|\n)*?'
     runs-on: ubuntu-latest
     
     steps:
@@ -19,7 +20,7 @@ jobs:
             echo "GITHUB_CONTEXT"
             echo github.event.commits.message
     
-      - name: Test regex conditional
+      - name: Test regex
         run: |
             if [[ "${{github.event.head_commit.message}}" =~ ^STAR-[0-9]+(.|\n)*? ]];
             then
