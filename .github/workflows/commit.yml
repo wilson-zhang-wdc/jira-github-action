@@ -28,6 +28,12 @@ jobs:
                 echo "Commit message '${{github.event.head_commit.message}}' doesnt have jira key"
             fi
 
+      - name: Install Python
+        uses: actions/setup-python@v2
+
+      - name: Install dependencies
+        run: pip install jira
+
       - name: Run Jira script
         run: |
             python scripts/jira_integration.py ${{ secrets.JIRA_USER_EMAIL }} ${{ secrets.JIRA_PASSWORD }} ${{ github.event.head_commit.message }}
