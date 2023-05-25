@@ -8,7 +8,7 @@ import json
 if len(sys.argv) >= 4:
     username = sys.argv[1]
     password = sys.argv[2]    
-    github_data = sys.argv[3]
+    github_data = json.loads(sys.argv[3])
 else:
     print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
     sys.exit(1)
