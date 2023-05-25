@@ -40,7 +40,8 @@ if __name__ == '__main__':
         print(rf"Expected 3 parameters, only {len(sys.argv)-1} were provided")
         sys.exit(1)
 
+    # Extract jira key from commit message
     jira_key = re.search("STAR-[0-9]+", commit_message)
     print(jira_key.group())
 
-    # update_jira_issue_status(username, password, jira_key, 'In Progress')
+    update_jira_issue_status(username, password, jira_key, 'In Progress')
