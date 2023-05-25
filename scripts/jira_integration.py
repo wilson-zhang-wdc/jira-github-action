@@ -14,7 +14,7 @@ else:
     sys.exit(1)
 
 print(github_data)
-commit_message = github_data.event.head_commit.message
+commit_message = github_data["event"]["head_commit"]["message"]
 
 # Extract jira key from commit message
 jira_key = re.search("STAR-[0-9]+", commit_message).group()
