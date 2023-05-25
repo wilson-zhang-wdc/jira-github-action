@@ -3,6 +3,7 @@ import sys
 import os
 import re
 import json
+import requests
 
 # Retrieve username and password from command-line arguments or environment variables
 if len(sys.argv) >= 4:
@@ -18,6 +19,9 @@ commit_message = github_data["event"]["head_commit"]["message"]
 # Extract jira key from commit message
 jira_key = re.search("STAR-[0-9]+", commit_message).group()
 print(jira_key)
+
+res = requests.get(f"https://cejira.sandisk.com/rest/api/2/issue/{jira_key}")
+print(res)
 
 # Jira server information
 JIRA_SERVER = 'https://cejira.sandisk.com'
