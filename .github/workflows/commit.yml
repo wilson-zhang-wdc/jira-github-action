@@ -17,8 +17,8 @@ jobs:
         env:
             GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
-            echo "GITHUB_CONTEXT"
-            echo github.event.commits.message
+            echo ${{env.GITHUB_CONTEXT}}
+            echo ${{github.event.commits.message}}
     
       - name: Test regex
         run: |
