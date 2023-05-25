@@ -19,15 +19,15 @@ commit_message = github_data["event"]["head_commit"]["message"]
 jira_key = re.search("STAR-[0-9]+", commit_message).group()
 print(jira_key)
 
-res = requests.get(f"https://cejira.sandisk.com/rest/api/2/issue/{jira_key}")
-print(res)
+# res = requests.get(f"https://cejira.sandisk.com/rest/api/2/issue/{jira_key}")
+# print(res)
 
-# # Jira server information
-# JIRA_SERVER = 'https://cejira.sandisk.com'
+# Jira server information
+JIRA_SERVER = 'https://cejira.sandisk.com'
 
-# # Connect to Jira
-# jira = JIRA(server=JIRA_SERVER, basic_auth=(username, password))
+# Connect to Jira
+jira = JIRA(server=JIRA_SERVER, basic_auth=(username, password))
 
-# # Get the issue
-# issue = jira.issue(jira_key)
-# print(issue)
+# Get the issue
+issue = jira.issue(jira_key)
+print(issue)
